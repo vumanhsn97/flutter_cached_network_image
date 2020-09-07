@@ -207,13 +207,11 @@ class CachedNetworkImage extends StatelessWidget {
       octoPlaceholderBuilder = (context) => Container();
     }
 
-    if (Platform.isWindows) return Image.network(
-      imageUrl,
-      width: width,
-      height: height,
-      alignment: alignment,
-      fit: fit
-    );
+    if (Platform.isWindows) {
+      if (imageBuilder != null) return imageBuilder(context, _image);
+      return Image.network(imageUrl,
+          width: width, height: height, alignment: alignment, fit: fit, );
+    }
 
     return OctoImage(
       image: _image,
