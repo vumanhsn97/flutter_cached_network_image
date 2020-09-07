@@ -211,6 +211,7 @@ class CachedNetworkImage extends StatelessWidget {
       imageUrl,
       width: width,
       height: height,
+      alignment: alignment,
       fit: fit
     );
 
