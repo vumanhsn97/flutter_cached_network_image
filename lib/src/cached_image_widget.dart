@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -201,13 +202,17 @@ class CachedNetworkImage extends StatelessWidget {
     var octoProgressIndicatorBuilder =
         progressIndicatorBuilder != null ? _octoProgressIndicatorBuilder : null;
 
-    ///If there is no placeholer OctoImage does not fade, so always set an
-    ///(empty) placeholder as this always used to be the behaviour of
-    ///CachedNetworkImage.
     if (octoPlaceholderBuilder == null &&
         octoProgressIndicatorBuilder == null) {
       octoPlaceholderBuilder = (context) => Container();
     }
+
+    if (Platform.isWindows) return Image.network(
+      imageUrl,
+      width: width,
+      height: height,
+      fit: fit
+    );
 
     return OctoImage(
       image: _image,
