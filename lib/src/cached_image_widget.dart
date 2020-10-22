@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:octo_image/octo_image.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 typedef Widget ImageWidgetBuilder(
     BuildContext context, ImageProvider imageProvider);
@@ -207,7 +208,7 @@ class CachedNetworkImage extends StatelessWidget {
       octoPlaceholderBuilder = (context) => Container();
     }
 
-    if (Platform.isWindows) {
+    if (Platform.isWindows || UniversalPlatform.isWeb) {
       if (imageBuilder != null)
         return LayoutBuilder(builder: (context, constraints) {
           return Image.network(imageUrl,
