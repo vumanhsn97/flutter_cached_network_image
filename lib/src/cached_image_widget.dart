@@ -208,7 +208,7 @@ class CachedNetworkImage extends StatelessWidget {
       octoPlaceholderBuilder = (context) => Container();
     }
 
-    if (Platform.isWindows || UniversalPlatform.isWeb) {
+    if (UniversalPlatform.isWindows || UniversalPlatform.isWeb) {
       if (imageBuilder != null)
         return LayoutBuilder(builder: (context, constraints) {
           return Image.network(imageUrl,
